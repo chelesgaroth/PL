@@ -1,0 +1,90 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Abin
+Rule 1     Abin -> ( num Abin Abin )
+Rule 2     Abin -> ( )
+
+Terminals, with rules where they appear
+
+(                    : 1 2
+)                    : 1 2
+error                : 
+num                  : 1
+
+Nonterminals, with rules where they appear
+
+Abin                 : 1 1 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Abin
+    (1) Abin -> . ( num Abin Abin )
+    (2) Abin -> . ( )
+
+    (               shift and go to state 2
+
+    Abin                           shift and go to state 1
+
+state 1
+
+    (0) S' -> Abin .
+
+
+
+state 2
+
+    (1) Abin -> ( . num Abin Abin )
+    (2) Abin -> ( . )
+
+    num             shift and go to state 3
+    )               shift and go to state 4
+
+
+state 3
+
+    (1) Abin -> ( num . Abin Abin )
+    (1) Abin -> . ( num Abin Abin )
+    (2) Abin -> . ( )
+
+    (               shift and go to state 2
+
+    Abin                           shift and go to state 5
+
+state 4
+
+    (2) Abin -> ( ) .
+
+    $end            reduce using rule 2 (Abin -> ( ) .)
+    (               reduce using rule 2 (Abin -> ( ) .)
+    )               reduce using rule 2 (Abin -> ( ) .)
+
+
+state 5
+
+    (1) Abin -> ( num Abin . Abin )
+    (1) Abin -> . ( num Abin Abin )
+    (2) Abin -> . ( )
+
+    (               shift and go to state 2
+
+    Abin                           shift and go to state 6
+
+state 6
+
+    (1) Abin -> ( num Abin Abin . )
+
+    )               shift and go to state 7
+
+
+state 7
+
+    (1) Abin -> ( num Abin Abin ) .
+
+    $end            reduce using rule 1 (Abin -> ( num Abin Abin ) .)
+    (               reduce using rule 1 (Abin -> ( num Abin Abin ) .)
+    )               reduce using rule 1 (Abin -> ( num Abin Abin ) .)
+

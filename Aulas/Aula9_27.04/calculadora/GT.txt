@@ -1,0 +1,52 @@
+#SEM PRIORIDADE NOS ()
+
+1
+1 + 2
+1 + 2 - 1 * 4
+1 + 2 - 4 
+----------------
+
+expressao : expressao '+' termo
+          | expressao '-' termo 
+          | termo 
+termo : termo '*' NUM
+      | termo '/' NUM
+      | NUM
+
+
+#COM PRIORIDADE NOS ()
+
+1
+1 + 2
+1 + 2 - 1 * 4
+1 + 2 - 4 
+----------------
+
+expressao : expressao '+' termo
+          | expressao '-' termo 
+          | termo 
+termo : termo '*' fator
+      | termo '/' fator
+      | fator
+fator : NUM
+      | '(' expressao ')'
+
+
+#COM COMANDOS 
+
+calculadora : comandos
+comandos : comandos comando
+         |
+comando : '?' id 
+        | '!' expressao
+        | id '=' expressao
+        | '!''!'
+        | '$' id            #inicializa uma variavel
+expressao : expressao '+' termo
+          | expressao '-' termo 
+          | termo 
+termo : termo '*' fator
+      | termo '/' fator
+      | fator
+fator : id
+      | '(' expressao ')'
